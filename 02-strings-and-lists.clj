@@ -25,3 +25,22 @@
 
 (string/replace "banana and mango" "an", "um")
 (string/replace "banana" "an" "anan")
+
+;; we can not talk about strings without mentioning regex
+;; regex patterns can be made using the convenience #"" literal
+;; or through converting a string using re-pattern.
+(re-pattern "pattern.*")
+#"pattern.*" ;; #"pattern.*"
+
+;; we will use the regex literal for brevity
+(re-matches #".*fox.*" "the lazy brown fox") ;; "the lazy brown fox"
+
+(re-matches #".*fox.*" "the lazy brown cat") ;; nil
+
+(re-matches #".*(f.{2,}).*" "the lazy brown fox")
+
+(re-matches #".*(fox).*" "The Lazy Brown Fox")
+
+;; clojure accepts the common regex flags enclosed in a (?) form
+;; before the pattern
+(re-matches #"(?i).*(fox).*" "The Lazy Brown Fox")
